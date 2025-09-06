@@ -1,15 +1,8 @@
 # ADITYA KARCHI - Portfolio
 
-Python Streamlit portfolio with animations.
+Python Streamlit portfolio
 
-## Run
-pip install streamlit pandas
-streamlit run app.py
-
-##Contact Information
-
-- Email: adityakarchi@gmail.com
-- Location: Bangalore, India  
-- GitHub [adityakarchii](https://github.com/adityakarchii)
+python -m streamlit run app.py
+https://github.com/adityakarchii
 
 
