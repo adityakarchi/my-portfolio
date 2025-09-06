@@ -234,7 +234,7 @@ st.markdown("""
     }
 
     #flip {
-        height: 40px;
+        height: 38px;
         overflow: hidden;
     }
 
