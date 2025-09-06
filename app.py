@@ -24,109 +24,199 @@ st.markdown("""
     }
     
     .stApp {
-        background-color: #111;
+        background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
         color: #f2f2f2;
         line-height: 1.6;
         position: relative;
         font-family: 'Roboto', sans-serif;
         overflow: hidden;
-        height: 100vh;
+        min-height: 100vh;
     }
     
-    /* Animated falling lines background */
-    .lines {
+    /* Space Celestial Background */
+    .space-background {
         position: fixed;
         top: 0;
         left: 0;
-        right: 0;
-        height: 100vh;
-        margin: auto;
-        width: 90vw;
-        display: flex;
-        justify-content: space-between;
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    .line {
-        position: relative;
-        width: 1px;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .line::after {
-        content: '';
-        display: block;
-        position: absolute;
-        height: 15vh;
         width: 100%;
-        top: -50%;
-        left: 0;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
-        animation: drop 7s 0s infinite;
-        animation-fill-mode: forwards;
-        animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+        background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     }
 
-    /* Different colors for each line */
-    .line:nth-child(1)::after {
-        background: linear-gradient(to bottom, rgba(255, 69, 0, 0) 0%, #FF4500 75%, #FF4500 100%);
-        animation-delay: 0.5s;
+    /* Stars */
+    .stars {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+            radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+            radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+            radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+            radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
+        background-repeat: repeat;
+        background-size: 200px 100px;
+        animation: sparkle 20s linear infinite;
     }
 
-    .line:nth-child(2)::after {
-        background: linear-gradient(to bottom, rgba(50, 205, 50, 0) 0%, #32CD32 75%, #32CD32 100%);
-        animation-delay: 1s;
+    @keyframes sparkle {
+        from { transform: translateX(0); }
+        to { transform: translateX(200px); }
     }
 
-    .line:nth-child(3)::after {
-        background: linear-gradient(to bottom, rgba(30, 144, 255, 0) 0%, #1E90FF 75%, #1E90FF 100%);
-        animation-delay: 1.5s;
+    /* Planets */
+    .planet {
+        position: absolute;
+        border-radius: 50%;
+        animation: orbit 60s linear infinite;
     }
 
-    .line:nth-child(4)::after {
-        background: linear-gradient(to bottom, rgba(255, 215, 0, 0) 0%, #FFD700 75%, #FFD700 100%);
-        animation-delay: 2s;
+    .planet1 {
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a);
+        top: 20%;
+        left: 10%;
+        animation: orbit1 80s linear infinite;
+        box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
     }
 
-    .line:nth-child(5)::after {
-        background: linear-gradient(to bottom, rgba(138, 43, 226, 0) 0%, #8A2BE2 75%, #8A2BE2 100%);
-        animation-delay: 2.5s;
+    .planet2 {
+        width: 60px;
+        height: 60px;
+        background: radial-gradient(circle at 30% 30%, #4ecdc4, #20b2aa);
+        top: 60%;
+        right: 15%;
+        animation: orbit2 100s linear infinite reverse;
+        box-shadow: 0 0 15px rgba(78, 205, 196, 0.3);
     }
 
-    .line:nth-child(6)::after {
-        background: linear-gradient(to bottom, rgba(32, 178, 170, 0) 0%, #20B2AA 75%, #20B2AA 100%);
-        animation-delay: 3s;
+    .planet3 {
+        width: 40px;
+        height: 40px;
+        background: radial-gradient(circle at 30% 30%, #ffd93d, #ff6b35);
+        top: 80%;
+        left: 70%;
+        animation: orbit3 120s linear infinite;
+        box-shadow: 0 0 10px rgba(255, 217, 61, 0.3);
     }
 
-    .line:nth-child(7)::after {
-        background: linear-gradient(to bottom, rgba(220, 20, 60, 0) 0%, #DC143C 75%, #DC143C 100%);
-        animation-delay: 3.5s;
+    @keyframes orbit1 {
+        from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+        to { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
     }
 
-    .line:nth-child(8)::after {
-        background: linear-gradient(to bottom, rgba(0, 250, 154, 0) 0%, #00FA9A 75%, #00FA9A 100%);
+    @keyframes orbit2 {
+        from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+        to { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+    }
+
+    @keyframes orbit3 {
+        from { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+        to { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
+    }
+
+    /* Shooting Stars */
+    .shooting-star {
+        position: absolute;
+        height: 2px;
+        background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0));
+        border-radius: 2px;
+        animation: shoot 8s linear infinite;
+    }
+
+    .shooting-star:nth-child(1) {
+        width: 150px;
+        top: 10%;
+        left: -150px;
+        animation-delay: 0s;
+    }
+
+    .shooting-star:nth-child(2) {
+        width: 100px;
+        top: 30%;
+        left: -100px;
         animation-delay: 4s;
     }
 
-    .line:nth-child(9)::after {
-        background: linear-gradient(to bottom, rgba(255, 20, 147, 0) 0%, #FF1493 75%, #FF1493 100%);
-        animation-delay: 4.5s;
+    .shooting-star:nth-child(3) {
+        width: 80px;
+        top: 70%;
+        left: -80px;
+        animation-delay: 2s;
     }
 
-    .line:nth-child(10)::after {
-        background: linear-gradient(to bottom, rgba(0, 191, 255, 0) 0%, #00BFFF 75%, #00BFFF 100%);
+    @keyframes shoot {
+        0% { transform: translateX(0) translateY(0); }
+        100% { transform: translateX(calc(100vw + 200px)) translateY(-200px); }
+    }
+
+    /* Nebula Effect */
+    .nebula {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(138, 43, 226, 0.1), rgba(75, 0, 130, 0.05), transparent);
+        top: 40%;
+        right: 20%;
+        animation: pulse 15s ease-in-out infinite;
+    }
+
+    .nebula2 {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(30, 144, 255, 0.1), rgba(0, 191, 255, 0.05), transparent);
+        top: 10%;
+        left: 60%;
+        animation: pulse 20s ease-in-out infinite reverse;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.3; }
+        50% { transform: scale(1.2); opacity: 0.6; }
+    }
+
+    /* Asteroid Belt */
+    .asteroid {
+        position: absolute;
+        background: #8b7d6b;
+        border-radius: 50%;
+        animation: float 30s linear infinite;
+    }
+
+    .asteroid1 {
+        width: 4px;
+        height: 4px;
+        top: 25%;
+        left: 30%;
+        animation-delay: 0s;
+    }
+
+    .asteroid2 {
+        width: 6px;
+        height: 6px;
+        top: 45%;
+        left: 80%;
         animation-delay: 5s;
     }
 
-    @keyframes drop {
-        0% {
-            top: -50%;
-        }
-        100% {
-            top: 110%;
-        }
+    .asteroid3 {
+        width: 3px;
+        height: 3px;
+        top: 75%;
+        left: 20%;
+        animation-delay: 10s;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
     }
     
     /* Flip Text Animation Styles */
@@ -291,7 +381,7 @@ st.markdown("""
     
     .skill-tag {
         display: inline-block;
-        background: #14b8a6;
+        background: #E14434;
         color: white;
         padding: 0.3rem 0.8rem;
         margin: 0.2rem 0.3rem 0.2rem 0;
@@ -301,27 +391,27 @@ st.markdown("""
     }
     
     .education-item {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 251, 222, 0.1);
         backdrop-filter: blur(10px);
-        border-left: 4px solid #14b8a6;
+        border-left: 4px solid #FFFBDE;
         padding: 1.2rem;
         margin-bottom: 1rem;
         border-radius: 0 8px 8px 0;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 251, 222, 0.1);
     }
     
-    .energy-emoji {
-        font-size: 1.5rem;
-        cursor: pointer;
-        margin-left: 0.5rem;
-        width: 3rem;
-        height: 3rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        transition: transform 0.2s ease;
-    }
+    # .energy-emoji {
+    #     font-size: 1.5rem;
+    #     cursor: pointer;
+    #     margin-left: 0.5rem;
+    #     width: 3rem;
+    #     height: 3rem;
+    #     display: inline-flex;
+    #     align-items: center;
+    #     justify-content: center;
+    #     border-radius: 50%;
+    #     transition: transform 0.2s ease;
+    # }
     
     @keyframes wipe-enter {
         0% {
@@ -356,19 +446,30 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def main():
-    # Add animated background lines
+    # Add space celestial background
     st.markdown("""
-    <div class="lines">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
+    <div class="space-background">
+        <!-- Stars -->
+        <div class="stars"></div>
+        
+        <!-- Planets -->
+        <div class="planet planet1"></div>
+        <div class="planet planet2"></div>
+        <div class="planet planet3"></div>
+        
+        <!-- Shooting Stars -->
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        
+        <!-- Nebula Effects -->
+        <div class="nebula"></div>
+        <div class="nebula2"></div>
+        
+        <!-- Asteroids -->
+        <div class="asteroid asteroid1"></div>
+        <div class="asteroid asteroid2"></div>
+        <div class="asteroid asteroid3"></div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -399,24 +500,24 @@ def main():
 
 def render_header():
     # Add animated flip text with all languages
-    st.markdown("""
-    <div id="container">
-        <div>Hello</div>
-        <div id="flip">
-            <div><div>English</div></div>
-            <div><div>नमस्ते</div></div>
-            <div><div>வணக்கம்</div></div>
-            <div><div>నమస్కారం</div></div>
-            <div><div>ನಮಸ್ಕಾರ</div></div>
-            <div><div>നമസ്കാരം</div></div>
-            <div><div>নমস্কার</div></div>
-            <div><div>नमस्कार</div></div>
-            <div><div>નમસ્તે</div></div>
-            <div><div>ਸਤ ਸ੍ਰੀ ਅਕਾਲ</div></div>
-            <div><div>ନମସ୍କାର</div></div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    # st.markdown("""
+    # <div id="container">
+    #     <div>Hello</div>
+    #     <div id="flip">
+    #         <div><div>English</div></div>
+    #         <div><div>नमस्ते</div></div>
+    #         <div><div>வணக்கம்</div></div>
+    #         <div><div>నమస్కారం</div></div>
+    #         <div><div>ನಮಸ್ಕಾರ</div></div>
+    #         <div><div>നമസ്കാരം</div></div>
+    #         <div><div>নমস্কার</div></div>
+    #         <div><div>नमस्कार</div></div>
+    #         <div><div>નમસ્તે</div></div>
+    #         <div><div>ਸਤ ਸ੍ਰੀ ਅਕਾਲ</div></div>
+    #         <div><div>ନମସ୍କାର</div></div>
+    #     </div>
+    # </div>
+    # """, unsafe_allow_html=True)
     
     # Greeting with auto-rotation
     current_greeting = greetings[st.session_state.greeting_index]
@@ -437,120 +538,120 @@ def render_header():
         with col_name:
             st.markdown('<div class="name-title">I\'m ADITYA K</div>', unsafe_allow_html=True)
             
-        with col_emoji:
-            # Enhanced 3D-style avatar with CSS 3D transforms
-            st.markdown("""
-            <div style="text-align: center; margin-bottom: 1rem; perspective: 1000px;">
-                <div class="avatar-3d" style="
-                    width: 80px; 
-                    height: 80px; 
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 2.5rem;
-                    box-shadow: 
-                        0 8px 16px rgba(0,0,0,0.4),
-                        0 0 0 4px #14b8a6,
-                        0 0 0 8px rgba(20, 184, 166, 0.3);
-                    margin: 0 auto;
-                    animation: rotate3d 6s linear infinite;
-                    transform-style: inherit;
-                    position: relative;
-                ">
-                    <div style="
-                        position: absolute;
-                        width: 100%;
-                        height: 100%;
-                        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,1.0), transparent 25%);
-                        border-radius: 50%;
-                        pointer-events: none;
-                    "></div>
-                    ❤️
-                </div>
-            </div>
+        # with col_emoji:
+        #     # Enhanced 3D-style avatar with CSS 3D transforms
+        #     st.markdown("""
+        #     <div style="text-align: center; margin-bottom: 1rem; perspective: 1000px;">
+        #         <div class="avatar-3d" style="
+        #             width: 80px; 
+        #             height: 80px; 
+        #             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        #             border-radius: 50%;
+        #             display: flex;
+        #             align-items: center;
+        #             justify-content: center;
+        #             font-size: 2.5rem;
+        #             box-shadow: 
+        #                 0 8px 16px rgba(0,0,0,0.4),
+        #                 0 0 0 4px #14b8a6,
+        #                 0 0 0 8px rgba(20, 184, 166, 0.3);
+        #             margin: 0 auto;
+        #             animation: rotate3d 6s linear infinite;
+        #             transform-style: inherit;
+        #             position: relative;
+        #         ">
+        #             <div style="
+        #                 position: absolute;
+        #                 width: 100%;
+        #                 height: 100%;
+        #                 background: radial-gradient(circle at 30% 30%, rgba(255,255,255,1.0), transparent 25%);
+        #                 border-radius: 50%;
+        #                 pointer-events: none;
+        #             "></div>
+        #             ❤️
+        #         </div>
+        #     </div>
             
-            <style>
-                @keyframes rotate3d {
-                    0% { 
-                        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-                        box-shadow: 
-                            0 8px 16px rgba(0,0,0,0.4),
-                            0 0 0 4px #14b8a6,
-                            0 0 0 8px rgba(20, 184, 166, 0.3);
-                    }
-                    25% { 
-                        transform: rotateX(15deg) rotateY(90deg) rotateZ(0deg);
-                        box-shadow: 
-                            -8px 8px 16px rgba(0,0,0,0.4),
-                            0 0 0 4px #ff6b6b,
-                            0 0 0 8px rgba(255, 107, 107, 0.3);
-                    }
-                    50% { 
-                        transform: rotateX(0deg) rotateY(180deg) rotateZ(15deg);
-                        box-shadow: 
-                            0 -8px 16px rgba(0,0,0,0.4),
-                            0 0 0 4px #4ecdc4,
-                            0 0 0 8px rgba(78, 205, 196, 0.3);
-                    }
-                    75% { 
-                        transform: rotateX(-15deg) rotateY(270deg) rotateZ(0deg);
-                        box-shadow: 
-                            8px 8px 16px rgba(0,0,0,0.4),
-                            0 0 0 4px #45b7d1,
-                            0 0 0 8px rgba(69, 183, 209, 0.3);
-                    }
-                    100% { 
-                        transform: rotateX(0deg) rotateY(360deg) rotateZ(0deg);
-                        box-shadow: 
-                            0 8px 16px rgba(0,0,0,0.4),
-                            0 0 0 4px #14b8a6,
-                            0 0 0 8px rgba(20, 184, 166, 0.3);
-                    }
-                }
+        #     <style>
+        #         @keyframes rotate3d {
+        #             0% { 
+        #                 transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+        #                 box-shadow: 
+        #                     0 8px 16px rgba(0,0,0,0.4),
+        #                     0 0 0 4px #14b8a6,
+        #                     0 0 0 8px rgba(20, 184, 166, 0.3);
+        #             }
+        #             25% { 
+        #                 transform: rotateX(15deg) rotateY(90deg) rotateZ(0deg);
+        #                 box-shadow: 
+        #                     -8px 8px 16px rgba(0,0,0,0.4),
+        #                     0 0 0 4px #ff6b6b,
+        #                     0 0 0 8px rgba(255, 107, 107, 0.3);
+        #             }
+        #             50% { 
+        #                 transform: rotateX(0deg) rotateY(180deg) rotateZ(15deg);
+        #                 box-shadow: 
+        #                     0 -8px 16px rgba(0,0,0,0.4),
+        #                     0 0 0 4px #4ecdc4,
+        #                     0 0 0 8px rgba(78, 205, 196, 0.3);
+        #             }
+        #             75% { 
+        #                 transform: rotateX(-15deg) rotateY(270deg) rotateZ(0deg);
+        #                 box-shadow: 
+        #                     8px 8px 16px rgba(0,0,0,0.4),
+        #                     0 0 0 4px #45b7d1,
+        #                     0 0 0 8px rgba(69, 183, 209, 0.3);
+        #             }
+        #             100% { 
+        #                 transform: rotateX(0deg) rotateY(360deg) rotateZ(0deg);
+        #                 box-shadow: 
+        #                     0 8px 16px rgba(0,0,0,0.4),
+        #                     0 0 0 4px #14b8a6,
+        #                     0 0 0 8px rgba(20, 184, 166, 0.3);
+        #             }
+        #         }
                 
-                .avatar-3d:hover {
-                    animation-duration: 3s;
-                    transform: scale(1.1);
-                }
-            </style>
-            """, unsafe_allow_html=True)
+        #         .avatar-3d:hover {
+        #             animation-duration: 3s;
+        #             transform: scale(1.1);
+        #         }
+        #     </style>
+        #     """, unsafe_allow_html=True)
             
             # Create animated emoji button
             current_emoji = energy_emojis[st.session_state.emoji_index]
             
             # Custom styled emoji button with animation
-            st.markdown(f"""
-            <style>
-                .emoji-button {{
-                    font-size: 2rem;
-                    background: none;
-                    border: none;
-                    cursor: pointer;
-                    width: 3rem;
-                    height: 3rem;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 50%;
-                    transition: all 0.3s ease;
-                    animation: wipe-enter 1s ease-out;
-                }}
-                .emoji-button:hover {{
-                    transform: scale(1.2);
-                    background: rgba(20, 184, 166, 0.1);
-                }}
-            </style>
-            <div style="text-align: center;">
-                <span class="emoji-button emoji-animation">{current_emoji}</span>
-            </div>
-            """, unsafe_allow_html=True)
+            # st.markdown(f"""
+            # <style>
+            #     .emoji-button {{
+            #         font-size: 2rem;
+            #         background: none;
+            #         border: none;
+            #         cursor: pointer;
+            #         width: 3rem;
+            #         height: 3rem;
+            #         display: flex;
+            #         align-items: center;
+            #         justify-content: center;
+            #         border-radius: 50%;
+            #         transition: all 0.3s ease;
+            #         animation: wipe-enter 1s ease-out;
+            #     }}
+            #     .emoji-button:hover {{
+            #         transform: scale(1.2);
+            #         background: rgba(20, 184, 166, 0.1);
+            #     }}
+            # </style>
+            # <div style="text-align: center;">
+            #     <span class="emoji-button emoji-animation">{current_emoji}</span>
+            # </div>
+            # """, unsafe_allow_html=True)
             
-            # # Hidden button for functionality
-            if st.button("Change Energy", key="emoji_btn", help="Click to change energy level"):
-                st.session_state.emoji_index = (st.session_state.emoji_index + 1) % len(energy_emojis)
-                st.rerun()
+            # # # Hidden button for functionality
+            # if st.button("Change Energy", key="emoji_btn", help="Click to change energy level"):
+            #     st.session_state.emoji_index = (st.session_state.emoji_index + 1) % len(energy_emojis)
+            #     st.rerun()
         
         st.markdown("""
         <div class="description">
@@ -580,8 +681,8 @@ def render_education():
     
     st.markdown(f"""
     <div class="education-item">
-        <h3 style="color: #1e293b; font-weight: 600; margin-bottom: 0.5rem;">{education_info['institution']}</h3>
-        <p style="color: #475569; margin-bottom: 0.3rem;">{education_info['degree']}</p>
+        <h3 style="color: #f7f3f2; font-weight: 600; margin-bottom: 0.75rem;">{education_info['institution']}</h3>
+        <p style="color: #cb4ddb; margin-bottom: 0.3rem;">{education_info['degree']}</p>
         <p style="color: #64748b; font-size: 0.9rem;">{education_info['duration']}</p>
     </div>
     """, unsafe_allow_html=True)
@@ -642,8 +743,8 @@ def render_contact():
     st.markdown('<div class="section-header">📬 Get In Touch</div>', unsafe_allow_html=True)
     
     st.markdown("""
-    <div style="background: #f8fafc; padding: 2rem; border-radius: 10px; text-align: center;">
-        <p style="color: #475569; margin-bottom: 1.5rem; font-size: 1.1rem;">
+    <div style="background: #154D71; padding: 2rem; border-radius: 10px; text-align: center;">
+        <p style="color: #AE75DA; margin-bottom: 1.5rem; font-size: 1.1rem;">
             I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology!
         </p>
     </div>
