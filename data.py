@@ -1,0 +1,52 @@
+# Portfolio Data
+greetings = [
+    {"text": "Hello", "lang": "English"},
+    {"text": "नमस्ते", "lang": "Hindi"},
+    {"text": "வணக்கம்", "lang": "Tamil"},
+    {"text": "నమస్కారం", "lang": "Telugu"},
+    {"text": "ನಮಸ್ಕಾರ", "lang": "Kannada"},
+    {"text": "നമസ്കാരം", "lang": "Malayalam"},
+    {"text": "নমস্কার", "lang": "Bengali"},
+    {"text": "नमस्कार", "lang": "Marathi"},
+    {"text": "નમસ્તે", "lang": "Gujarati"},
+    {"text": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ", "lang": "Punjabi"},
+    {"text": "ନମସ୍କାର", "lang": "Odia"},
+]
+
+projects = [
+    {
+        "title": "HAND-GESTURES",
+        "description": "open-cv project which has multiple modes of filters which are recognised through hand",
+        "year": "2025",
+        "details": [
+            "",
+            "",
+            "",
+        ],
+        "tech": ["python", "open-cv"],
+    },
+
+]
+
+skills = [
+    {"name": "C++"},
+    {"name": "Python"},
+    {"name": "SQL"},
+    {"name": "open-cv"},
+    {"name": "streamlit"},
+    {"name": "machine-learning"},
+    {"name": "Data Structures & Algorithms"}
+
+]
+
+education_info = {
+    "institution": "BMS Institute of Technology and Management",
+    "degree": "Artificial Intelligence and Machine Learning",
+    "duration": "2023 - Present"
+}
+
+contact_info = {
+    "email": "adityakarchi@gmail.com",
+    "location": "Bangalore, India",
+    "github": "https://github.com/adityakarchii"
+}
