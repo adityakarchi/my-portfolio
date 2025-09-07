@@ -48,5 +48,6 @@ education_info = {
 contact_info = {
     "email": "adityakarchi@gmail.com",
     "location": "Bangalore, India",
-    "github": "https://github.com/adityakarchii"
+    "github": "https://github.com/adityakarchi",
+    "linkden": "https://www.linkedin.com/in/aditya-karchi-b34427298/"
 }

@@ -242,7 +242,7 @@ st.markdown("""
         color: #fff;
         padding: 2px 10px;
         height: 50px;
-        margin-bottom: 45px;
+        margin-bottom: 45px;git
         display: inline-block;
         border-radius: 8px;
         min-width: 100px;
@@ -671,7 +671,10 @@ def render_header():
                 📍 {contact_info['location']}
             </div>
             <div class="contact-item">
-                🔗 <a href="{contact_info['github']}" style="text-decoration: none; color: #14b8a6;" target="_blank">GitHub</a>
+                🔗 <a href="{contact_info['github']}" style="text-decoration: linear; color: #14b8a6;" target="_blank">GitHub</a>
+            </div>
+            <div class="contact-item">
+                🔗 <a href="{contact_info['linkden']}" style="text-decoration: bold; color: #14b8a6;" target="_blank">Linkden</a>
             </div>
         </div>
         """, unsafe_allow_html=True)
