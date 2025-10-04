@@ -25,6 +25,17 @@ projects = [
         ],
         "tech": ["Python", "Open-CV"],
     },
+    {
+        "title": "Visual-Try-On",
+        "description": "A computer vision–based project that enables users to virtually try clothes, accessories, or eyewear without physically wearing them. The system leverages deep learning, image processing, and generative models to realistically map apparel onto a user’s body image. Using techniques like pose estimation, segmentation, and texture mapping, the project aligns selected outfits with the person’s posture and shape, creating a lifelike fitting-room experience.",
+        "year": "2025",
+        "details": [
+            "",
+            "",
+            "",
+        ],
+        "tech": ["Python", "Open-CV","Mediapipe","Stream-Lit"],
+    },
 
 ]
 
