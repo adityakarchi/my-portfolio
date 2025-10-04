@@ -872,7 +872,7 @@ def render_footer():
     <div style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 2rem;">
         <p>Built with ❤️ using Streamlit • © {datetime.now().year} ADITYA KARCHI</p>
         <p style="font-size: 0.8rem; margin-top: 0.5rem;">
-            my-projects: <a href="https://github.com/adityakarchii" style="color: #14b8a6; text-decoration: none;">GitHub Profile</a>
+            my-projects: <a href="https://github.com/adityakarchi" style="color: #14b8a6; text-decoration: none;">GitHub Profile</a>
         </p>
     </div>
     """, unsafe_allow_html=True)
