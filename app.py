@@ -379,21 +379,72 @@ st.markdown("""
         font-style: italic;
     }
     
-    .skill-tag {
-        display: inline-block;
-        background: #E14434;
-        color: white;
-        padding: 0.3rem 0.8rem;
-        margin: 0.2rem 0.3rem 0.2rem 0;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 500;
-    }
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap'); /* Changed weight to 700 for better impact */
+
+.skill-tag {
+    /* Base Style */
+    display: inline-block;
+    color: white;
+    padding: 0.5rem 1.1rem; /* Slightly larger padding */
+    margin: 0.4rem 0.5rem 0.4rem 0;
+    border-radius: 30px; /* More rounded */
+    font-size: 0.9rem;
+    font-weight: 700; /* Bold text */
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+    
+    /* 3D-like Background and Border */
+    background: linear-gradient(135deg, #FF7B6C, #E14434); /* Brighter start, deeper end */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Inner highlight/shine */
+    
+    /* Stronger Shadow for Depth (The 'Floating' Effect) */
+    box-shadow: 
+        0 8px 15px rgba(0, 0, 0, 0.4), /* Deep, blurred drop shadow for elevation */
+        inset 0 0 10px rgba(255, 255, 255, 0.3), /* Subtle inner light/shine */
+        inset 0 -5px 5px rgba(0, 0, 0, 0.2); /* Inner bottom shadow for convexity */
+    
+    /* Animation Setup */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother, more dynamic transition */
+    
+    /* Add 'perspective' if you want to use true 3D transforms on a parent container */
+    /* transform-style: preserve-3d; */
+}
+
+/* --- */
+
+/* Hover animation (The 'Pop-out' Effect) */
+.skill-tag:hover {
+    /* Scale and Translate for a strong "pop" */
+    transform: 
+        translateY(-5px) /* Lift higher */
+        scale(1.1);    /* Scale up more dramatically */
+        /* You could also try 'rotateX(5deg) rotateY(5deg)' for a tilt effect */
+
+    /* Change Gradient on Hover for a 'Pulsing' Effect */
+    background: linear-gradient(135deg, #FF998A, #F55D4E); /* Shift to a slightly different hue/brightness */
+
+    /* Enhanced Shadow for 'Closer' Look */
+    box-shadow: 
+        0 15px 25px rgba(0, 0, 0, 0.5), /* Deeper shadow when lifted */
+        inset 0 0 15px rgba(255, 255, 255, 0.4), /* Stronger inner light */
+        inset 0 -8px 8px rgba(0, 0, 0, 0.3); /* Stronger inner shadow */
+}
+
+/* --- */
+
+/* Optional: Adding a small press/active state for completeness */
+.skill-tag:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 
+        0 2px 5px rgba(0, 0, 0, 0.3), /* Flat shadow when pressed */
+        inset 0 0 5px rgba(0, 0, 0, 0.3);
+}
     
     .education-item {
         background: rgba(255, 251, 222, 0.1);
         backdrop-filter: blur(10px);
-        border-left: 4px solid #FFFBDE;
+        border-left: 4px solid #B6CEB4;
         padding: 1.2rem;
         margin-bottom: 1rem;
         border-radius: 0 8px 8px 0;
@@ -655,9 +706,8 @@ def render_header():
         
         st.markdown("""
         <div class="description">
-            A curious student who loves building things with code! I'm passionate about systems programming 
-            . Currently looking for internships where I can learn, contribute, 
-            and maybe break some code along the way!!!!!
+            Third-year engineering student at BMS Institute of Technology and Management with strong interests in machine learning, deep learning, NLP, and generative AI. Experienced in projects such as gesture recognition,visual-try-on, showcasing both technical knowledge and practical application. Got an opportunity to participate in Khelo India to represent my district and college, reflecting discipline, commitment, and teamwork.
+ Focused on continuous learning, skill development, and preparing for placements.
         </div>
         """, unsafe_allow_html=True)
         
@@ -685,8 +735,8 @@ def render_education():
     st.markdown(f"""
     <div class="education-item">
         <h3 style="color: #f7f3f2; font-weight: 600; margin-bottom: 0.75rem;">{education_info['institution']}</h3>
-        <p style="color: #cb4ddb; margin-bottom: 0.3rem;">{education_info['degree']}</p>
-        <p style="color: #64748b; font-size: 0.9rem;">{education_info['duration']}</p>
+        <p style="color: #EEEFE0; margin-bottom: 0.3rem;">{education_info['degree']}</p>
+        <p style="color: #F2F2F2; font-size: 0.9rem;">{education_info['duration']}</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -719,8 +769,15 @@ def render_skills():
     
     # Group skills into categories
     programming_languages = ["C++","Python","SQL",]
-    frameworks_tools = ["open-cv", "streamlit","machine-learning"]
-    concepts = ["Data Structures & Algorithms", "Terminal Applications"]
+    frameworks_tools = ["Open-CV", "Streamlit","Tensorflow"]
+    concepts = ["Data Structures & Algorithms",
+        "Data Preprocessing",
+        "Data Visualization",
+        "Deep Learning",
+        "NLP",
+        "Generative AI",
+        "Terminal Applications",
+        "Machine-Learning"]
     
     col1, col2, col3 = st.columns(3)
     
@@ -758,6 +815,13 @@ def render_contact():
         if st.button("📧 Send me an Email", use_container_width=True):
             st.markdown(f'<meta http-equiv="refresh" content="0;url=mailto:{contact_info["email"]}">', unsafe_allow_html=True)
 
+import streamlit as st
+from datetime import datetime
+
+# Initialize session state for the button click if it doesn't exist
+if 'resume_download_clicked' not in st.session_state:
+    st.session_state['resume_download_clicked'] = False
+
 def render_footer():
     st.markdown("---")
     
@@ -768,22 +832,42 @@ def render_footer():
     </div>
     """, unsafe_allow_html=True)
     
+    # Define a callback function to set the state
+    def set_download_clicked():
+        st.session_state['resume_download_clicked'] = True
+
     # Center the download button
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         try:
             with open("resume.pdf", "rb") as file:
+                
+                # Check the state to determine button appearance
+                if st.session_state['resume_download_clicked']:
+                    # Display the 'Success' button style (tick mark)
+                    btn_label = "✅ Download Complete"
+                    btn_help = "You have already downloaded the resume."
+                    btn_disabled = True # Disable re-clicking
+                else:
+                    # Display the standard 'Download' button
+                    btn_label = "📥 Download Resume"
+                    btn_help = "Download my resume as PDF"
+                    btn_disabled = False
+
                 btn = st.download_button(
-                    label="📥 Download Resume",
+                    label=btn_label,
                     data=file,
-                    file_name="ADITYA_KARCHI_Resume.pdf",
+                    file_name="ADITYA-KARCHI_Resume.pdf",
                     mime="application/pdf",
                     use_container_width=True,
-                    help="Download my resume as PDF"
+                    help=btn_help,
+                    on_click=set_download_clicked, # Use the callback on click
+                    disabled=btn_disabled
                 )
         except FileNotFoundError:
             st.error("Resume file not found. Please add resume.pdf to the project folder.")
     
+    # Existing footer text
     st.markdown(f"""
     <div style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 2rem;">
         <p>Built with ❤️ using Streamlit • © {datetime.now().year} ADITYA KARCHI</p>
@@ -793,7 +877,8 @@ def render_footer():
     </div>
     """, unsafe_allow_html=True)
 
-
+# Example of how you'd call the function
+# render_footer()
 
 if __name__ == "__main__":
     

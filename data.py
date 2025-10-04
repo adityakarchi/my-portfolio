@@ -23,7 +23,7 @@ projects = [
             "",
             "",
         ],
-        "tech": ["python", "open-cv"],
+        "tech": ["Python", "Open-CV"],
     },
 
 ]
@@ -32,9 +32,15 @@ skills = [
     {"name": "C++"},
     {"name": "Python"},
     {"name": "SQL"},
-    {"name": "open-cv"},
-    {"name": "streamlit"},
-    {"name": "machine-learning"},
+    {"name": "Data Visualization"},
+    {"name": "Data Preprocessing"},
+    {"name": "DeepLearning"},
+    {"name": "NLP"},
+    {"name": "Generative AI"},
+    {"name": "Open-CV"},
+    {"name": "Streamlit"},
+    {"name": "Tensorflow"},
+    {"name": "Machine-Learning"},
     {"name": "Data Structures & Algorithms"}
 
 ]
