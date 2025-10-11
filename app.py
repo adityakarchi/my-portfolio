@@ -234,7 +234,7 @@ st.markdown("""
     }
 
     #flip {
-        height: 40px;
+        height: 38px;
         overflow: hidden;
     }
 
@@ -242,7 +242,7 @@ st.markdown("""
         color: #fff;
         padding: 2px 10px;
         height: 50px;
-        margin-bottom: 45px;git
+        margin-bottom: 45px;
         display: inline-block;
         border-radius: 8px;
         min-width: 100px;
@@ -379,7 +379,7 @@ st.markdown("""
         font-style: italic;
     }
     
- @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap'); /* Changed weight to 700 for better impact */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap'); /* Changed weight to 700 for better impact */
 
 .skill-tag {
     /* Base Style */
@@ -439,9 +439,8 @@ st.markdown("""
     box-shadow: 
         0 2px 5px rgba(0, 0, 0, 0.3), /* Flat shadow when pressed */
         inset 0 0 5px rgba(0, 0, 0, 0.3);
-}
-    
-    .education-item {
+}   
+       .education-item {
         background: rgba(255, 251, 222, 0.1);
         backdrop-filter: blur(10px);
         border-left: 4px solid #B6CEB4;
@@ -449,8 +448,7 @@ st.markdown("""
         margin-bottom: 1rem;
         border-radius: 0 8px 8px 0;
         border: 1px solid rgba(255, 251, 222, 0.1);
-    }
-    
+    }   
     # .energy-emoji {
     #     font-size: 1.5rem;
     #     cursor: pointer;
@@ -587,7 +585,7 @@ def render_header():
         
         col_name, col_emoji = st.columns([4, 1])
         with col_name:
-            st.markdown('<div class="name-title">I\'m ADITYA K</div>', unsafe_allow_html=True)
+            st.markdown('<div class="name-title">I\'m ADITYA KARCHI 😄</div>', unsafe_allow_html=True)
             
         # with col_emoji:
         #     # Enhanced 3D-style avatar with CSS 3D transforms
@@ -706,8 +704,7 @@ def render_header():
         
         st.markdown("""
         <div class="description">
-            Third-year engineering student at BMS Institute of Technology and Management with strong interests in machine learning, deep learning, NLP, and generative AI. Experienced in projects such as gesture recognition,visual-try-on, showcasing both technical knowledge and practical application. Got an opportunity to participate in Khelo India to represent my district and college, reflecting discipline, commitment, and teamwork.
- Focused on continuous learning, skill development, and preparing for placements.
+            Third-year engineering student at BMS Institute of Technology and Management with strong interests in machine learning, deep learning, NLP, and generative AI. Experienced in projects such as gesture recognition, visual-try-on, showcasing both technical knowledge and practical application. Got an opportunity to participate in Khelo India to represent my district and college, reflecting discipline, commitment, and teamwork. Focused on continuous learning, skill development, and preparing for placements.
         </div>
         """, unsafe_allow_html=True)
         
@@ -721,10 +718,10 @@ def render_header():
                 📍 {contact_info['location']}
             </div>
             <div class="contact-item">
-                🔗 <a href="{contact_info['github']}" style="text-decoration: linear; color: #14b8a6;" target="_blank">GitHub</a>
+                🔗 <a href="{contact_info['github']}" style="text-decoration: none; color: #14b8a6;" target="_blank">GitHub</a>
             </div>
             <div class="contact-item">
-                🔗 <a href="{contact_info['linkden']}" style="text-decoration: bold; color: #14b8a6;" target="_blank">Linkden</a>
+                🔗 <a href="{contact_info['linkden']}" style="text-decoration: none; color: #14b8a6;" target="_blank">LinkedIn</a>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -767,17 +764,18 @@ def render_projects():
 def render_skills():
     st.markdown('<div class="section-header">🛠️ Skills & Technologies</div>', unsafe_allow_html=True)
     
-    # Group skills into categories
-    programming_languages = ["C++","Python","SQL",]
-    frameworks_tools = ["Open-CV", "Streamlit","Tensorflow"]
-    concepts = ["Data Structures & Algorithms",
-        "Data Preprocessing",
+    # Group skills into categories based on actual data
+    programming_languages = ["C++", "Python", "SQL"]
+    frameworks_tools = ["Open-CV", "Streamlit", "Tensorflow"]
+    concepts = [
+        "Data Structures & Algorithms",
+        "Data Preprocessing", 
         "Data Visualization",
-        "Deep Learning",
+        "DeepLearning",
         "NLP",
         "Generative AI",
-        "Terminal Applications",
-        "Machine-Learning"]
+        "Machine-Learning"
+    ]
     
     col1, col2, col3 = st.columns(3)
     
@@ -803,8 +801,8 @@ def render_contact():
     st.markdown('<div class="section-header">📬 Get In Touch</div>', unsafe_allow_html=True)
     
     st.markdown("""
-    <div style="background: #154D71; padding: 2rem; border-radius: 10px; text-align: center;">
-        <p style="color: #AE75DA; margin-bottom: 1.5rem; font-size: 1.1rem;">
+    <div style="background: #F5D2D2; padding: 2rem; border-radius: 10px; text-align: left;">
+        <p style="color: #19183B; margin-bottom: 1.5rem; font-size: 1.3rem;">
             I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology!
         </p>
     </div>
@@ -814,9 +812,6 @@ def render_contact():
     with col2:
         if st.button("📧 Send me an Email", use_container_width=True):
             st.markdown(f'<meta http-equiv="refresh" content="0;url=mailto:{contact_info["email"]}">', unsafe_allow_html=True)
-
-import streamlit as st
-from datetime import datetime
 
 # Initialize session state for the button click if it doesn't exist
 if 'resume_download_clicked' not in st.session_state:
@@ -846,7 +841,7 @@ def render_footer():
                 if st.session_state['resume_download_clicked']:
                     # Display the 'Success' button style (tick mark)
                     btn_label = "✅ Download Complete"
-                    btn_help = "You have already downloaded the resume."
+                    btn_help = "See You On the Other Side"
                     btn_disabled = True # Disable re-clicking
                 else:
                     # Display the standard 'Download' button
@@ -877,9 +872,5 @@ def render_footer():
     </div>
     """, unsafe_allow_html=True)
 
-# Example of how you'd call the function
-# render_footer()
-
 if __name__ == "__main__":
-    
     main()
