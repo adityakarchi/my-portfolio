@@ -1,6 +1,7 @@
 import streamlit as st
 import time
 from datetime import datetime
+# Ensure data.py is in the same directory as this file
 from data import greetings, projects, skills, education_info, contact_info
 import base64
 
@@ -12,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Custom CSS for styling
+# Custom CSS for styling (Space Theme and Flip Animation)
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css?family=Roboto:700');
@@ -225,72 +226,63 @@ st.markdown("""
         text-transform: uppercase;
         font-size: 36px;
         font-weight: bold;
-        padding-top: 50px;  
+        padding-top: 50px; 
         position: relative;
         width: 100%;
         display: block;
-        text-align: right;
+        text-align: left;
         margin-bottom: 2rem;
     }
 
     #flip {
-        height: 38px;
+        height: 45px; /* Adjusted height to fit the inner div height */
         overflow: hidden;
+        display: flex;
+    }
+
+    #flip > div {
+        animation: showGreetings 12s ease-in-out infinite;
     }
 
     #flip > div > div {
         color: #fff;
         padding: 2px 10px;
-        height: 50px;
-        margin-bottom: 45px;
-        display: inline-block;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 8px;
-        min-width: 100px;
+        min-width: 120px;
         text-align: center;
     }
 
-    #flip div:first-child {
-        animation: showGreetings 10s linear infinite;
-    }
-
-    /* Different background colors for each greeting */
-    #flip div:nth-child(1) div { background: #4ec7f3; } /* English - Blue */
-    #flip div:nth-child(2) div { background: #ff6b6b; } /* Hindi - Red */
-    #flip div:nth-child(3) div { background: #4ecdc4; } /* Tamil - Teal */
-    #flip div:nth-child(4) div { background: #45b7d1; } /* Telugu - Sky Blue */
-    #flip div:nth-child(5) div { background: #96ceb4; } /* Kannada - Mint */
-    #flip div:nth-child(6) div { background: #ffeaa7; } /* Malayalam - Yellow */
-    #flip div:nth-child(7) div { background: #dda0dd; } /* Bengali - Plum */
-    #flip div:nth-child(8) div { background: #98d8c8; } /* Marathi - Seafoam */
-    #flip div:nth-child(9) div { background: #f7dc6f; } /* Gujarati - Gold */
-    #flip div:nth-child(10) div { background: #bb8fce; } /* Punjabi - Lavender */
-    #flip div:nth-child(11) div { background: #85c1e9; } /* Odia - Light Blue */
+    /* Background colors (matched to the number of greetings in the flip structure) */
+    #flip div:nth-child(1) div:nth-child(1) { background: #4ec7f3; }
+    #flip div:nth-child(1) div:nth-child(2) { background: #ff6b6b; } 
+    #flip div:nth-child(1) div:nth-child(3) { background: #4ecdc4; }
+    #flip div:nth-child(1) div:nth-child(4) { background: #45b7d1; }
+    #flip div:nth-child(1) div:nth-child(5) { background: #96ceb4; }
+    #flip div:nth-child(1) div:nth-child(6) { background: #ffeaa7; }
+    #flip div:nth-child(1) div:nth-child(7) { background: #dda0dd; }
+    #flip div:nth-child(1) div:nth-child(8) { background: #98d8c8; } 
+    #flip div:nth-child(1) div:nth-child(9) { background: #f7dc6f; }
+    #flip div:nth-child(1) div:nth-child(10) { background: #bb8fce; }
+    #flip div:nth-child(1) div:nth-child(11) { background: #85c1e9; }
 
     @keyframes showGreetings {
-        0% { margin-top: -495px; }
-        4.5% { margin-top: -450px; }
-        9% { margin-top: -450px; }
-        13.5% { margin-top: -405px; }
-        18% { margin-top: -405px; }
-        22.5% { margin-top: -360px; }
-        27% { margin-top: -360px; }
-        31.5% { margin-top: -315px; }
-        36% { margin-top: -315px; }
-        40.5% { margin-top: -270px; }
-        45% { margin-top: -270px; }
-        49.5% { margin-top: -225px; }
-        54% { margin-top: -225px; }
-        58.5% { margin-top: -180px; }
-        63% { margin-top: -180px; }
-        67.5% { margin-top: -135px; }
-        72% { margin-top: -135px; }
-        76.5% { margin-top: -90px; }
-        81% { margin-top: -90px; }
-        85.5% { margin-top: -45px; }
-        90% { margin-top: -45px; }
-        94.5% { margin-top: 0px; }
-        99.99% { margin-top: 0px; }
-        100% { margin-top: -495px; }
+        0% { margin-top: 0; }
+        8.3% { margin-top: 0; } /* 100% / 12 items (11 greetings + 1 return) */
+        16.6% { margin-top: -45px; }
+        24.9% { margin-top: -90px; }
+        33.2% { margin-top: -135px; }
+        41.5% { margin-top: -180px; }
+        49.8% { margin-top: -225px; }
+        58.1% { margin-top: -270px; }
+        66.4% { margin-top: -315px; }
+        74.7% { margin-top: -360px; }
+        83% { margin-top: -405px; }
+        91.3% { margin-top: -450px; }
+        100% { margin-top: 0; }
     }
     
     .main {
@@ -379,68 +371,61 @@ st.markdown("""
         font-style: italic;
     }
     
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap'); /* Changed weight to 700 for better impact */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
-.skill-tag {
-    /* Base Style */
-    display: inline-block;
-    color: white;
-    padding: 0.5rem 1.1rem; /* Slightly larger padding */
-    margin: 0.4rem 0.5rem 0.4rem 0;
-    border-radius: 30px; /* More rounded */
-    font-size: 0.9rem;
-    font-weight: 700; /* Bold text */
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 1px;
-    cursor: pointer;
+    .skill-tag {
+        /* Base Style */
+        display: inline-block;
+        color: white;
+        padding: 0.5rem 1.1rem; 
+        margin: 0.4rem 0.5rem 0.4rem 0;
+        border-radius: 30px; 
+        font-size: 0.9rem;
+        font-weight: 700; 
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 1px;
+        cursor: pointer;
+        
+        /* 3D-like Background and Border */
+        background: linear-gradient(135deg, #FF7B6C, #E14434); 
+        border: 2px solid rgba(255, 255, 255, 0.5); 
+        
+        /* Stronger Shadow for Depth (The 'Floating' Effect) */
+        box-shadow: 
+            0 8px 15px rgba(0, 0, 0, 0.4),
+            inset 0 0 10px rgba(255, 255, 255, 0.3), 
+            inset 0 -5px 5px rgba(0, 0, 0, 0.2); 
+        
+        /* Animation Setup */
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Hover animation (The 'Pop-out' Effect) */
+    .skill-tag:hover {
+        /* Scale and Translate for a strong "pop" */
+        transform: 
+            translateY(-5px)
+            scale(1.1);
+
+        /* Change Gradient on Hover for a 'Pulsing' Effect */
+        background: linear-gradient(135deg, #FF998A, #F55D4E);
+
+        /* Enhanced Shadow for 'Closer' Look */
+        box-shadow: 
+            0 15px 25px rgba(0, 0, 0, 0.5), 
+            inset 0 0 15px rgba(255, 255, 255, 0.4),
+            inset 0 -8px 8px rgba(0, 0, 0, 0.3); 
+    }
+
+    /* Optional: Adding a small press/active state for completeness */
+    .skill-tag:active {
+        transform: translateY(0) scale(0.98);
+        box-shadow: 
+            0 2px 5px rgba(0, 0, 0, 0.3),
+            inset 0 0 5px rgba(0, 0, 0, 0.3);
+    } 
     
-    /* 3D-like Background and Border */
-    background: linear-gradient(135deg, #FF7B6C, #E14434); /* Brighter start, deeper end */
-    border: 2px solid rgba(255, 255, 255, 0.5); /* Inner highlight/shine */
-    
-    /* Stronger Shadow for Depth (The 'Floating' Effect) */
-    box-shadow: 
-        0 8px 15px rgba(0, 0, 0, 0.4), /* Deep, blurred drop shadow for elevation */
-        inset 0 0 10px rgba(255, 255, 255, 0.3), /* Subtle inner light/shine */
-        inset 0 -5px 5px rgba(0, 0, 0, 0.2); /* Inner bottom shadow for convexity */
-    
-    /* Animation Setup */
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother, more dynamic transition */
-    
-    /* Add 'perspective' if you want to use true 3D transforms on a parent container */
-    /* transform-style: preserve-3d; */
-}
-
-/* --- */
-
-/* Hover animation (The 'Pop-out' Effect) */
-.skill-tag:hover {
-    /* Scale and Translate for a strong "pop" */
-    transform: 
-        translateY(-5px) /* Lift higher */
-        scale(1.1);    /* Scale up more dramatically */
-        /* You could also try 'rotateX(5deg) rotateY(5deg)' for a tilt effect */
-
-    /* Change Gradient on Hover for a 'Pulsing' Effect */
-    background: linear-gradient(135deg, #FF998A, #F55D4E); /* Shift to a slightly different hue/brightness */
-
-    /* Enhanced Shadow for 'Closer' Look */
-    box-shadow: 
-        0 15px 25px rgba(0, 0, 0, 0.5), /* Deeper shadow when lifted */
-        inset 0 0 15px rgba(255, 255, 255, 0.4), /* Stronger inner light */
-        inset 0 -8px 8px rgba(0, 0, 0, 0.3); /* Stronger inner shadow */
-}
-
-/* --- */
-
-/* Optional: Adding a small press/active state for completeness */
-.skill-tag:active {
-    transform: translateY(0) scale(0.98);
-    box-shadow: 
-        0 2px 5px rgba(0, 0, 0, 0.3), /* Flat shadow when pressed */
-        inset 0 0 5px rgba(0, 0, 0, 0.3);
-}   
-       .education-item {
+    .education-item {
         background: rgba(255, 251, 222, 0.1);
         backdrop-filter: blur(10px);
         border-left: 4px solid #B6CEB4;
@@ -448,19 +433,7 @@ st.markdown("""
         margin-bottom: 1rem;
         border-radius: 0 8px 8px 0;
         border: 1px solid rgba(255, 251, 222, 0.1);
-    }   
-    # .energy-emoji {
-    #     font-size: 1.5rem;
-    #     cursor: pointer;
-    #     margin-left: 0.5rem;
-    #     width: 3rem;
-    #     height: 3rem;
-    #     display: inline-flex;
-    #     align-items: center;
-    #     justify-content: center;
-    #     border-radius: 50%;
-    #     transition: transform 0.2s ease;
-    # }
+    } 
     
     @keyframes wipe-enter {
         0% {
@@ -490,6 +463,12 @@ st.markdown("""
         border: none;
         border-radius: 25px;
         padding: 0.5rem 1.5rem;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .stButton button:hover {
+        background: #0d9488;
+        box-shadow: 0 4px 15px rgba(20, 184, 166, 0.4);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -522,20 +501,12 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # Initialize session state for greeting rotation and emoji
-    if 'greeting_index' not in st.session_state:
-        st.session_state.greeting_index = 0
+    # Initialize session state for emoji (greeting rotation now handled by CSS animation)
     if 'emoji_index' not in st.session_state:
         st.session_state.emoji_index = 0
-    if 'last_greeting_update' not in st.session_state:
-        st.session_state.last_greeting_update = time.time()
     
-    # Auto-rotate greetings every 3 seconds
-    current_time = time.time()
-    if current_time - st.session_state.last_greeting_update > 3:
-        st.session_state.greeting_index = (st.session_state.greeting_index + 1) % len(greetings)
-        st.session_state.last_greeting_update = current_time
-        st.rerun()
+    # Wrap the main content in a container to respect the max-width set in CSS
+    st.markdown('<div class="main">', unsafe_allow_html=True)
     
     # Header Section
     render_header()
@@ -546,165 +517,39 @@ def main():
     render_skills()
     render_contact()
     render_footer()
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
 def render_header():
     # Add animated flip text with all languages
-    # st.markdown("""
-    # <div id="container">
-    #     <div>Hello</div>
-    #     <div id="flip">
-    #         <div><div>English</div></div>
-    #         <div><div>नमस्ते</div></div>
-    #         <div><div>வணக்கம்</div></div>
-    #         <div><div>నమస్కారం</div></div>
-    #         <div><div>ನಮಸ್ಕಾರ</div></div>
-    #         <div><div>നമസ്കാരം</div></div>
-    #         <div><div>নমস্কার</div></div>
-    #         <div><div>नमस्कार</div></div>
-    #         <div><div>નમસ્તે</div></div>
-    #         <div><div>ਸਤ ਸ੍ਰੀ ਅਕਾਲ</div></div>
-    #         <div><div>ନମସ୍କାର</div></div>
-    #     </div>
-    # </div>
-    # """, unsafe_allow_html=True)
-    
-    # Greeting with auto-rotation
-    current_greeting = greetings[st.session_state.greeting_index]
+    st.markdown("""
+    <div id="container">
+        <div id="flip">
+            <div>
+                <div>Hello</div>
+                <div>नमस्ते</div>
+                <div>வணக்கம்</div>
+                <div>నమస్కారం</div>
+                <div>ನಮಸ್ಕಾರ</div>
+                <div>നമസ്കാരം</div>
+                <div>নমস্কার</div>
+                <div>नमस्कार</div>
+                <div>નમસ્તે</div>
+                <div>ਸਤ ਸ੍ਰੀ ਅਕਾਲ</div>
+                <div>ନମସ୍କାର</div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     col1, col2 = st.columns([3, 1])
     
     with col1:
-        st.markdown(f"""
-        <div class="greeting-container">
-            {current_greeting['text']} <span style="font-size: 0.7em; color: #64748b;">({current_greeting['lang']})</span>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # Interactive emoji click
-        energy_emojis = ["😄", "😎", "🙂", "😐", "😶", "😒", "😔", "😫", "😩", "😴"]
-        
-        col_name, col_emoji = st.columns([4, 1])
-        with col_name:
-            st.markdown('<div class="name-title">I\'m ADITYA KARCHI 😄</div>', unsafe_allow_html=True)
-            
-        # with col_emoji:
-        #     # Enhanced 3D-style avatar with CSS 3D transforms
-        #     st.markdown("""
-        #     <div style="text-align: center; margin-bottom: 1rem; perspective: 1000px;">
-        #         <div class="avatar-3d" style="
-        #             width: 80px; 
-        #             height: 80px; 
-        #             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        #             border-radius: 50%;
-        #             display: flex;
-        #             align-items: center;
-        #             justify-content: center;
-        #             font-size: 2.5rem;
-        #             box-shadow: 
-        #                 0 8px 16px rgba(0,0,0,0.4),
-        #                 0 0 0 4px #14b8a6,
-        #                 0 0 0 8px rgba(20, 184, 166, 0.3);
-        #             margin: 0 auto;
-        #             animation: rotate3d 6s linear infinite;
-        #             transform-style: inherit;
-        #             position: relative;
-        #         ">
-        #             <div style="
-        #                 position: absolute;
-        #                 width: 100%;
-        #                 height: 100%;
-        #                 background: radial-gradient(circle at 30% 30%, rgba(255,255,255,1.0), transparent 25%);
-        #                 border-radius: 50%;
-        #                 pointer-events: none;
-        #             "></div>
-        #             ❤️
-        #         </div>
-        #     </div>
-            
-        #     <style>
-        #         @keyframes rotate3d {
-        #             0% { 
-        #                 transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-        #                 box-shadow: 
-        #                     0 8px 16px rgba(0,0,0,0.4),
-        #                     0 0 0 4px #14b8a6,
-        #                     0 0 0 8px rgba(20, 184, 166, 0.3);
-        #             }
-        #             25% { 
-        #                 transform: rotateX(15deg) rotateY(90deg) rotateZ(0deg);
-        #                 box-shadow: 
-        #                     -8px 8px 16px rgba(0,0,0,0.4),
-        #                     0 0 0 4px #ff6b6b,
-        #                     0 0 0 8px rgba(255, 107, 107, 0.3);
-        #             }
-        #             50% { 
-        #                 transform: rotateX(0deg) rotateY(180deg) rotateZ(15deg);
-        #                 box-shadow: 
-        #                     0 -8px 16px rgba(0,0,0,0.4),
-        #                     0 0 0 4px #4ecdc4,
-        #                     0 0 0 8px rgba(78, 205, 196, 0.3);
-        #             }
-        #             75% { 
-        #                 transform: rotateX(-15deg) rotateY(270deg) rotateZ(0deg);
-        #                 box-shadow: 
-        #                     8px 8px 16px rgba(0,0,0,0.4),
-        #                     0 0 0 4px #45b7d1,
-        #                     0 0 0 8px rgba(69, 183, 209, 0.3);
-        #             }
-        #             100% { 
-        #                 transform: rotateX(0deg) rotateY(360deg) rotateZ(0deg);
-        #                 box-shadow: 
-        #                     0 8px 16px rgba(0,0,0,0.4),
-        #                     0 0 0 4px #14b8a6,
-        #                     0 0 0 8px rgba(20, 184, 166, 0.3);
-        #             }
-        #         }
-                
-        #         .avatar-3d:hover {
-        #             animation-duration: 3s;
-        #             transform: scale(1.1);
-        #         }
-        #     </style>
-        #     """, unsafe_allow_html=True)
-            
-            # Create animated emoji button
-            current_emoji = energy_emojis[st.session_state.emoji_index]
-            
-            # Custom styled emoji button with animation
-            # st.markdown(f"""
-            # <style>
-            #     .emoji-button {{
-            #         font-size: 2rem;
-            #         background: none;
-            #         border: none;
-            #         cursor: pointer;
-            #         width: 3rem;
-            #         height: 3rem;
-            #         display: flex;
-            #         align-items: center;
-            #         justify-content: center;
-            #         border-radius: 50%;
-            #         transition: all 0.3s ease;
-            #         animation: wipe-enter 1s ease-out;
-            #     }}
-            #     .emoji-button:hover {{
-            #         transform: scale(1.2);
-            #         background: rgba(20, 184, 166, 0.1);
-            #     }}
-            # </style>
-            # <div style="text-align: center;">
-            #     <span class="emoji-button emoji-animation">{current_emoji}</span>
-            # </div>
-            # """, unsafe_allow_html=True)
-            
-            # # # Hidden button for functionality
-            # if st.button("Change Energy", key="emoji_btn", help="Click to change energy level"):
-            #     st.session_state.emoji_index = (st.session_state.emoji_index + 1) % len(energy_emojis)
-            #     st.rerun()
+        st.markdown('<div class="name-title">I\'m ADITYA KARCHI 😄</div>', unsafe_allow_html=True)
         
         st.markdown("""
         <div class="description">
-            Third-year engineering student at BMS Institute of Technology and Management with strong interests in machine learning, deep learning, NLP, and generative AI. Experienced in projects such as gesture recognition, visual-try-on, showcasing both technical knowledge and practical application. Got an opportunity to participate in Khelo India to represent my district and college, reflecting discipline, commitment, and teamwork. Focused on continuous learning, skill development, and preparing for placements.
+            Third-year engineering student at BMS Institute of Technology and Management with strong interests in Machine Learning, Deep Learning, NLP, and Generative AI. Experienced in projects such as gesture recognition, visual-try-on, showcasing both technical knowledge and practical application. Got an opportunity to participate in Khelo India to represent my district and college, reflecting discipline, commitment, and teamwork. Focused on continuous learning, skill development, and preparing for placements.
         </div>
         """, unsafe_allow_html=True)
         
@@ -741,9 +586,11 @@ def render_projects():
     st.markdown('<div class="section-header">💻 Projects</div>', unsafe_allow_html=True)
     
     for project in projects:
+        # Generate skill tags with custom styling
         tech_tags = ''.join([f'<span class="skill-tag">{tech}</span>' for tech in project['tech']])
         
-        details_html = ''.join([f'<li style="margin-bottom: 0.5rem;">{detail}</li>' for detail in project['details']])
+        # Format details list
+        details_html = ''.join([f'<li style="margin-bottom: 0.5rem; color: #d1d5db;">{detail}</li>' for detail in project['details']])
         
         st.markdown(f"""
         <div class="project-card">
@@ -752,7 +599,7 @@ def render_projects():
                 <div class="project-year">{project['year']}</div>
             </div>
             <div class="project-description">{project['description']}</div>
-            <ul style="color: #475569; margin: 1rem 0; padding-left: 1.2rem;">
+            <ul style="margin: 1rem 0; padding-left: 1.2rem;">
                 {details_html}
             </ul>
             <div style="margin-top: 1rem;">
@@ -764,7 +611,7 @@ def render_projects():
 def render_skills():
     st.markdown('<div class="section-header">🛠️ Skills & Technologies</div>', unsafe_allow_html=True)
     
-    # Group skills into categories based on actual data
+    # Group skills based on what's defined in the mock data (for consistency)
     programming_languages = ["C++", "Python", "SQL"]
     frameworks_tools = ["Open-CV", "Streamlit", "Tensorflow"]
     concepts = [
@@ -782,27 +629,28 @@ def render_skills():
     with col1:
         st.markdown("**Programming Languages**")
         for skill in programming_languages:
-            if skill in [s['name'] for s in skills]:
+            # Check if skill exists in the overall list (defined in data.py)
+            if any(s['name'] == skill for s in skills):
                 st.markdown(f'<span class="skill-tag">{skill}</span>', unsafe_allow_html=True)
     
     with col2:
         st.markdown("**Frameworks & Tools**")
         for skill in frameworks_tools:
-            if skill in [s['name'] for s in skills]:
+            if any(s['name'] == skill for s in skills):
                 st.markdown(f'<span class="skill-tag">{skill}</span>', unsafe_allow_html=True)
     
     with col3:
         st.markdown("**Concepts & Others**")
         for skill in concepts:
-            if skill in [s['name'] for s in skills]:
+            if any(s['name'] == skill for s in skills):
                 st.markdown(f'<span class="skill-tag">{skill}</span>', unsafe_allow_html=True)
 
 def render_contact():
     st.markdown('<div class="section-header">📬 Get In Touch</div>', unsafe_allow_html=True)
     
     st.markdown("""
-    <div style="background: #F5D2D2; padding: 2rem; border-radius: 10px; text-align: left;">
-        <p style="color: #19183B; margin-bottom: 1.5rem; font-size: 1.3rem;">
+    <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px); padding: 2rem; border-radius: 10px; text-align: left; border: 1px solid rgba(255, 255, 255, 0.2);">
+        <p style="color: #f2f2f2; margin-bottom: 1.5rem; font-size: 1.3rem;">
             I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology!
         </p>
     </div>
@@ -810,6 +658,7 @@ def render_contact():
     
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
+        # Use a hidden markdown element to trigger the mailto link upon button press
         if st.button("📧 Send me an Email", use_container_width=True):
             st.markdown(f'<meta http-equiv="refresh" content="0;url=mailto:{contact_info["email"]}">', unsafe_allow_html=True)
 
@@ -818,7 +667,7 @@ if 'resume_download_clicked' not in st.session_state:
     st.session_state['resume_download_clicked'] = False
 
 def render_footer():
-    st.markdown("---")
+    st.markdown("<hr style='border-top: 1px solid #374151;'>", unsafe_allow_html=True)
     
     # Resume download section
     st.markdown("""
@@ -834,6 +683,11 @@ def render_footer():
     # Center the download button
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
+        # --- RESUME HANDLING NOTE ---
+        # The following block attempts to open 'resume.pdf'.
+        # You must place your resume.pdf file in the same folder as this script to avoid an error.
+        # I've kept the original error handling for resilience.
+        # --------------------------
         try:
             with open("resume.pdf", "rb") as file:
                 
@@ -841,7 +695,7 @@ def render_footer():
                 if st.session_state['resume_download_clicked']:
                     # Display the 'Success' button style (tick mark)
                     btn_label = "✅ Download Complete"
-                    btn_help = "See You On the Other Side"
+                    btn_help = "Thank you for reviewing my qualifications!"
                     btn_disabled = True # Disable re-clicking
                 else:
                     # Display the standard 'Download' button
@@ -849,7 +703,7 @@ def render_footer():
                     btn_help = "Download my resume as PDF"
                     btn_disabled = False
 
-                btn = st.download_button(
+                st.download_button(
                     label=btn_label,
                     data=file,
                     file_name="ADITYA-KARCHI_Resume.pdf",
@@ -860,7 +714,7 @@ def render_footer():
                     disabled=btn_disabled
                 )
         except FileNotFoundError:
-            st.error("Resume file not found. Please add resume.pdf to the project folder.")
+            st.error("⚠️ Resume file 'resume.pdf' not found. Please add the file to the project folder to enable download.")
     
     # Existing footer text
     st.markdown(f"""
